@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class PCommand
 {
-	public PCommand() throws ClassNotFoundException, SQLException
+	public PCommand()  throws ClassNotFoundException, SQLException
 	{
 		PGenPanel p = new PGenPanel();		
 	}

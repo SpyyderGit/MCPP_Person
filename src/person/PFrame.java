@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 
 public class PFrame extends JFrame
 {
-	public PFrame() throws ClassNotFoundException, SQLException
+	public  PFrame() throws ClassNotFoundException, SQLException
 	{
 		setLayout(null);
 		setBounds(100, 100, 800, 600);

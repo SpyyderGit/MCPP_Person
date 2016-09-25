@@ -9,7 +9,7 @@ public class PersonDM extends AbstractTableModel
 	private static final long serialVersionUID = 1L;
 	public ArrayList<Person> pp;
 
-	public PersonDM(ArrayList<Person> pp)
+	public  PersonDM(ArrayList<Person> pp)
 	{
 		this.pp = pp;
 	}
