@@ -7,7 +7,7 @@ public class Person
 	private String lName = null;
 	private int age = 0;
 
-	public  Person(int id, String fName, String lName, int age)
+	public Person(int id, String fName, String lName, int age)
 	{
 		super();
 		this.id = id;

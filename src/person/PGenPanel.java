@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 public class PGenPanel extends JPanel
 {
 
-	public  JButton btnCreate;
+	public JButton btnCreate;
 
 	public PGenPanel() throws ClassNotFoundException, SQLException
 	{

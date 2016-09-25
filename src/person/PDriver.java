@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class PDriver
 {
-	ArrayList<Person>  al = new ArrayList<>();
+	ArrayList<Person> al = new ArrayList<>();
 
 	public ArrayList<Person> read()
 	{
