@@ -112,6 +112,7 @@ public class PGenPanel extends JPanel
 				{
 					pd.delete(new Person(id, txtFName.getText(), txtLName.getText(), age));
 					pd.read();
+					pm.fireTableDataChanged();
 				}
 				catch (ClassNotFoundException | SQLException e1)
 				{
