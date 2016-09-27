@@ -111,6 +111,7 @@ public class PGenPanel extends JPanel
 				try
 				{
 					pd.delete(new Person(id, txtFName.getText(), txtLName.getText(), age));
+					pd.read();
 				}
 				catch (ClassNotFoundException | SQLException e1)
 				{
@@ -124,11 +125,10 @@ public class PGenPanel extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				
-					pd.al.clear();
-					pd.read();
-					pm.fireTableDataChanged();
-				
+
+				pd.read();
+				pm.fireTableDataChanged();
+
 			}
 		});
 
@@ -144,16 +144,15 @@ public class PGenPanel extends JPanel
 				try
 				{
 					pd.update(new Person(id, txtFName.getText(), txtLName.getText(), age));
-					// pm.fireTableDataChanged();
-					pd.al.clear();
 					pd.read();
+					pm.fireTableDataChanged();
 				}
 				catch (ClassNotFoundException | SQLException e)
 				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				pm.fireTableDataChanged();
+
 			}
 		});
 	}

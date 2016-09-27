@@ -14,7 +14,7 @@ public class PDriver
 
 	public ArrayList<Person> read()
 	{
-
+		al.clear();
 		try
 		{
 			Class.forName("org.h2.Driver");
