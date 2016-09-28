@@ -20,15 +20,7 @@ public class PGenPanel extends JPanel
 
 	public PGenPanel() throws ClassNotFoundException, SQLException
 	{
-		PDriver pd = new PDriver();
-		PersonDM pm = new PersonDM(pd.read());
-
 		setLayout(null);
-		setBackground(Color.lightGray);
-		JTable tab = new JTable(pm);
-		JScrollPane jsp = new JScrollPane(tab);
-		jsp.setBounds(25, 230, 650, 200);
-		add(jsp);
 
 		JLabel lblId = new JLabel("ID: ");
 		lblId.setBounds(20, 20, 90, 30);
@@ -62,99 +54,44 @@ public class PGenPanel extends JPanel
 		txtAge.setBounds(90, 140, 150, 30);
 		add(txtAge);
 
+		// ======================================================
+		// создание обьекта TableModel с параметрами JTextField
+		// ======================================================
+
+		PDriver pd = new PDriver();
+		PersonDM pm = new PersonDM(txtId, txtFName, txtLName, txtAge);
+
+		// ==========================================================
+
+		setBackground(Color.lightGray);
+		JTable tab = new JTable(pm);
+		JScrollPane jsp = new JScrollPane(tab);
+		jsp.setBounds(25, 230, 650, 200);
+		add(jsp);
+
 		btnCreate = new JButton("Create");
 		btnCreate.setBounds(125, 450, 90, 30);
 		btnCreate.setActionCommand("create");
+		btnCreate.addActionListener(pm);
 		add(btnCreate);
+
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.setBounds(410, 450, 90, 30);
+		btnDelete.setActionCommand("delete");
+		btnDelete.addActionListener(pm);
+		add(btnDelete);
 
 		JButton btnRead = new JButton("Read");
 		btnRead.setBounds(220, 450, 90, 30);
+		btnRead.setActionCommand("read");
+		btnRead.addActionListener(pm);
 		add(btnRead);
 
 		JButton btnUpdate = new JButton("Update");
 		btnUpdate.setBounds(315, 450, 90, 30);
+		btnUpdate.setActionCommand("update");
+		btnUpdate.addActionListener(pm);
 		add(btnUpdate);
 
-		JButton btnDelete = new JButton("Delete");
-		btnDelete.setBounds(410, 450, 90, 30);
-		add(btnDelete);
-
-		btnCreate.addActionListener(new ActionListener()
-		{
-
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				int id = Integer.parseInt(txtId.getText());
-				int age = Integer.parseInt(txtAge.getText());
-				try
-				{
-					pd.create(new Person(id, txtFName.getText(), txtLName.getText(), age));
-					pm.fireTableDataChanged();
-				}
-				catch (ClassNotFoundException | SQLException e1)
-				{
-					JOptionPane.showMessageDialog(null, "Запись с таким индексом уже существует");
-				}
-			}
-		});
-
-		btnDelete.addActionListener(new ActionListener()
-		{
-
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-
-				int id = Integer.parseInt(txtId.getText());
-				int age = Integer.parseInt(txtAge.getText());
-				try
-				{
-					pd.delete(new Person(id, txtFName.getText(), txtLName.getText(), age));
-					pd.read();
-					pm.fireTableDataChanged();
-				}
-				catch (ClassNotFoundException | SQLException e1)
-				{
-					e1.printStackTrace();
-				}
-			}
-		});
-
-		btnRead.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-
-				pd.read();
-				pm.fireTableDataChanged();
-
-			}
-		});
-
-		btnUpdate.addActionListener(new ActionListener()
-		{
-
-			@Override
-			public void actionPerformed(ActionEvent arg0)
-			{
-
-				int id = Integer.parseInt(txtId.getText());
-				int age = Integer.parseInt(txtAge.getText());
-				try
-				{
-					pd.update(new Person(id, txtFName.getText(), txtLName.getText(), age));
-					pd.read();
-					pm.fireTableDataChanged();
-				}
-				catch (ClassNotFoundException | SQLException e)
-				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
-		});
 	}
 }
