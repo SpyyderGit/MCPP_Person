@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -15,8 +16,6 @@ import javax.swing.JTextField;
 
 public class PGenPanel extends JPanel
 {
-
-	public JButton btnCreate;
 
 	public PGenPanel() throws ClassNotFoundException, SQLException
 	{
@@ -58,7 +57,6 @@ public class PGenPanel extends JPanel
 		// создание обьекта TableModel с параметрами JTextField
 		// ======================================================
 
-		PDriver pd = new PDriver();
 		PersonDM pm = new PersonDM(txtId, txtFName, txtLName, txtAge);
 
 		// ==========================================================
@@ -69,29 +67,32 @@ public class PGenPanel extends JPanel
 		jsp.setBounds(25, 230, 650, 200);
 		add(jsp);
 
-		btnCreate = new JButton("Create");
-		btnCreate.setBounds(125, 450, 90, 30);
+		ImageIcon addIcon = new ImageIcon("D:\\Dropbox\\shared\\MCPP_Person\\icons\\add.png");
+		JButton btnCreate = new JButton("Create", addIcon);
+		btnCreate.setBounds(90, 450, 120, 30);
 		btnCreate.setActionCommand("create");
 		btnCreate.addActionListener(pm);
 		add(btnCreate);
 
-		JButton btnDelete = new JButton("Delete");
-		btnDelete.setBounds(410, 450, 90, 30);
+		ImageIcon deleteIcon = new ImageIcon("D:\\Dropbox\\shared\\MCPP_Person\\icons\\delete.png");
+		JButton btnDelete = new JButton("Delete", deleteIcon);
+		btnDelete.setBounds(480, 450, 120, 30);
 		btnDelete.setActionCommand("delete");
 		btnDelete.addActionListener(pm);
 		add(btnDelete);
 
-		JButton btnRead = new JButton("Read");
-		btnRead.setBounds(220, 450, 90, 30);
+		ImageIcon readIcon = new ImageIcon("D:\\Dropbox\\shared\\MCPP_Person\\icons\\read.png");
+		JButton btnRead = new JButton("Read", readIcon);
+		btnRead.setBounds(220, 450, 120, 30);
 		btnRead.setActionCommand("read");
 		btnRead.addActionListener(pm);
 		add(btnRead);
 
-		JButton btnUpdate = new JButton("Update");
-		btnUpdate.setBounds(315, 450, 90, 30);
+		ImageIcon updateIcon = new ImageIcon("D:\\Dropbox\\shared\\MCPP_Person\\icons\\update.png");
+		JButton btnUpdate = new JButton("Update", updateIcon);
+		btnUpdate.setBounds(350, 450, 120, 30);
 		btnUpdate.setActionCommand("update");
 		btnUpdate.addActionListener(pm);
 		add(btnUpdate);
-
 	}
 }

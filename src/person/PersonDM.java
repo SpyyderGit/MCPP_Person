@@ -115,7 +115,6 @@ public class PersonDM extends AbstractTableModel implements ActionListener
 			{
 				e1.printStackTrace();
 			}
-
 		}
 	}
 }
