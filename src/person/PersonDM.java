@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.AbstractTableModel;
 
-public class PersonDM extends AbstractTableModel implements ActionListener
+public class PersonDM extends AbstractTableModel
 {
 	private static final long serialVersionUID = 1L;
 
@@ -65,19 +65,34 @@ public class PersonDM extends AbstractTableModel implements ActionListener
 		}
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		String com = e.getActionCommand();
-		int id = Integer.parseInt(txtId.getText());
-		int age = Integer.parseInt(txtAge.getText());
+	CreateListener cl = new CreateListener();
+	ReadListener rl = new ReadListener();
+	UpdateListener ul = new UpdateListener();
+	DeleteListener dl = new DeleteListener();
 
-		if (com.equals("create"))
+	class CreateListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e)
 		{
+
 			try
 			{
-				pd.create(new Person(id, txtFName.getText(), txtLName.getText(), age));
-				fireTableDataChanged();
+				if (txtId.getText().equals(""))
+				{
+					JOptionPane.showMessageDialog(null, "Поле ID не заполнено", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}
+				else if (txtAge.getText().equals(""))
+				{
+					JOptionPane.showMessageDialog(null, "Поле Age не заполнено", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}
+				else
+				{
+					int id = Integer.parseInt(txtId.getText());
+					int age = Integer.parseInt(txtAge.getText());
+					pd.create(new Person(id, txtFName.getText(), txtLName.getText(), age));
+					fireTableDataChanged();
+				}
 			}
 			catch (ClassNotFoundException | SQLException e1)
 			{
@@ -85,31 +100,67 @@ public class PersonDM extends AbstractTableModel implements ActionListener
 						JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		else if (com.equals("delete"))
+	}
+
+	class ReadListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			pd.read();
+			fireTableDataChanged();
+		}
+	}
+
+	class UpdateListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e)
 		{
 			try
 			{
-				pd.delete(new Person(id, txtFName.getText(), txtLName.getText(), age));
-				pd.read();
-				fireTableDataChanged();
+				if (txtId.getText().equals(""))
+				{
+					JOptionPane.showMessageDialog(null, "Параметры для обновления не заданы", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+				}
+				else
+				{
+					int id = Integer.parseInt(txtId.getText());
+					int age = Integer.parseInt(txtAge.getText());
+					pd.update(new Person(id, txtFName.getText(), txtLName.getText(), age));
+					pd.read();
+					fireTableDataChanged();
+				}
 			}
 			catch (ClassNotFoundException | SQLException e1)
 			{
 				e1.printStackTrace();
 			}
 		}
-		else if (com.equals("read"))
-		{
-			pd.read();
-			fireTableDataChanged();
-		}
-		else if (com.equals("update"))
+	}
+
+	class DeleteListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e)
 		{
 			try
 			{
-				pd.update(new Person(id, txtFName.getText(), txtLName.getText(), age));
-				pd.read();
-				fireTableDataChanged();
+
+				if (txtId.getText().equals(""))
+				{
+					JOptionPane.showMessageDialog(null, "Параметры для удаления не заданы", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+				}
+				else
+				{
+					int id = Integer.parseInt(txtId.getText());
+					int age = Integer.parseInt(txtAge.getText());
+					pd.delete(new Person(id, txtFName.getText(), txtLName.getText(), age));
+					pd.read();
+					fireTableDataChanged();
+				}
 			}
 			catch (ClassNotFoundException | SQLException e1)
 			{

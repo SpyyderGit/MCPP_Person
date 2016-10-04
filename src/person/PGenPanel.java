@@ -59,7 +59,7 @@ public class PGenPanel extends JPanel
 
 		PersonDM pm = new PersonDM(txtId, txtFName, txtLName, txtAge);
 
-		// ==========================================================
+		// ======================================================
 
 		setBackground(Color.lightGray);
 		JTable tab = new JTable(pm);
@@ -70,29 +70,25 @@ public class PGenPanel extends JPanel
 		ImageIcon addIcon = new ImageIcon("D:\\Dropbox\\shared\\MCPP_Person\\icons\\add.png");
 		JButton btnCreate = new JButton("Create", addIcon);
 		btnCreate.setBounds(90, 450, 120, 30);
-		btnCreate.setActionCommand("create");
-		btnCreate.addActionListener(pm);
+		btnCreate.addActionListener(pm.cl);
 		add(btnCreate);
 
 		ImageIcon deleteIcon = new ImageIcon("D:\\Dropbox\\shared\\MCPP_Person\\icons\\delete.png");
 		JButton btnDelete = new JButton("Delete", deleteIcon);
 		btnDelete.setBounds(480, 450, 120, 30);
-		btnDelete.setActionCommand("delete");
-		btnDelete.addActionListener(pm);
+		btnDelete.addActionListener(pm.dl);
 		add(btnDelete);
 
 		ImageIcon readIcon = new ImageIcon("D:\\Dropbox\\shared\\MCPP_Person\\icons\\read.png");
 		JButton btnRead = new JButton("Read", readIcon);
 		btnRead.setBounds(220, 450, 120, 30);
-		btnRead.setActionCommand("read");
-		btnRead.addActionListener(pm);
+		btnRead.addActionListener(pm.rl);
 		add(btnRead);
 
 		ImageIcon updateIcon = new ImageIcon("D:\\Dropbox\\shared\\MCPP_Person\\icons\\update.png");
 		JButton btnUpdate = new JButton("Update", updateIcon);
 		btnUpdate.setBounds(350, 450, 120, 30);
-		btnUpdate.setActionCommand("update");
-		btnUpdate.addActionListener(pm);
+		btnUpdate.addActionListener(pm.ul);
 		add(btnUpdate);
 	}
 }
